@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- import Vue.js -->
+    <script src="./dist/vue.min.js"></script>
+    <!-- import stylesheet -->
+    <link rel="stylesheet" href="./dist/iview.css">
+    <!-- import iView -->
+    <script src="./dist/iview.min.js"></script>
+    <script src="./api/apiIndex.js"></script>
+    <script src="./dist/CopyToCB.js"></script>
+    <style>
+        *{
+            moz-user-select: -moz-none;
+            -moz-user-select: none;
+            -o-user-select:none;
+            -khtml-user-select:none;
+            -webkit-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
+        }
+        #main {
+            margin: 5px;
+        }
+        .ivu-table .demo-table-info-row td{
+            background-color: #2db7f5;
+            color: #fff;
+        }
+        .urlDrawer button {
+            margin-bottom: 4px;
+        }
+        .btnOdd {
+            width: 49%;
+            margin-right: 1%;
+            margin-left: 0.5%;
+        }
+        .btnEven {
+            width: 49%;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <Row :gutter="10">
+        <i-Col span="12">
+            <card>
+                <p slot="title">输入数据&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i-button type="success" size="small" @click="insert">插入</i-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i-button type="warning" size="small" @click="urlDrawer = true">显示官网</i-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i-button type="info" size="small" @click="clearInsertForm">清空表单</i-button>
+                </p>
+                <i-Form :label-width="100">
+                    <form-item label="类型">
+                        <i-Select v-model="insertObj.itype">
+                            <i-Option v-for="(val,lab) in iTypesMap" v-model="val" :key="val">{{ lab }}</i-Option>
+                        </i-Select>
+                    </form-item>
+                    <form-item label="日期">
+                        <Date-Picker type="date" v-model="insertObj.date" placeholder="Select date" style="width: 200px"></Date-Picker>
+                    </form-item>
+                    <Form-Item label="输入源头">
+                        <!-- <i-Input type="text" v-model="insertObj.from"></i-Input> -->
+                        <i-Select style="width: calc(100% - 60px);"
+                                v-model="insertObj.from"
+                                filterable
+                                :remote-method="selectInptIF"
+                                    default-label="selectInput.insertFrom.default"
+                                :loading="selectInput.insertFrom.loading">
+                            <i-Option v-for="(option, index) in selectInput.insertFrom.options" :value="option.value" :key="index">{{option.label}}</i-Option>
+                        </i-Select> <i-button type="text" @click="insertObj.from = ''">清除</i-button>
+                    </Form-Item>
+                    <Form-Item label="输入地">
+                        <!-- <i-Input type="text" v-model="insertObj.to"></i-Input> -->
+                        <i-Select style="width: calc(100% - 60px);"
+                                v-model="insertObj.to"
+                                filterable
+                                :remote-method="selectInptIT"
+                                default-label="selectInput.insertTo.default"
+                                :loading="selectInput.insertTo.loading">
+                            <i-Option v-for="(option, index) in selectInput.insertTo.options" :value="option.value" :key="index">{{option.label}}</i-Option>
+                        </i-Select> <i-button type="text" @click="insertObj.to = ''">清除</i-button>
+                    </Form-Item>
+                    <Form-Item label="数量">
+                        <i-Input type="number" v-model="insertObj.num"></i-Input>
+                    </Form-Item>
+                    <Form-Item label="输入人员">
+                        <i-Input type="text" v-model="insertObj.whos"></i-Input>
+                    </Form-Item>
+                    <Form-Item label="说明">
+                        <i-Input type="textarea" v-model="insertObj.note"></i-Input>
+                    </Form-Item>
+                </i-Form>
+            </card>
+            <Drawer :closable="false" width="640" v-model="urlDrawer" :mask="false" class="urlDrawer" placement="left">
+                <i-Button type="success" long @click="urlDrawer=false">关闭</i-Button>
+                <div>
+                    <Radio-Group v-model="curUrlBtnAction">
+                        <Radio v-for="uba in urlBtnAction" :label="uba.text"></Radio>
+                    </Radio-Group>
+                </div>
+                <i-button v-for="(url,ind) in orgUrl" :type="btnColor[url.time % 4]"
+                          :class="ind % 2 ? 'btnOdd' : 'btnEven'"
+                          @click="openLink(ind)" long>{{url.title}}</i-button>
+                <!-- <i-button @click="openLink('http://www.nhc.gov.cn/cms-search/xxgk/searchList.htm?type=search')" long>国家卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wjw.beijing.gov.cn/xwzx_20031/wnxw/')" long>北京卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wsjk.gansu.gov.cn/channel/11217/index.html')" long>甘肃卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wsjkw.gd.gov.cn/zwyw_yqxx/')" long>广东卫生健康委员会</i-button>
+                <i-button @click="openLink('https://search1.henan.gov.cn/jrobot/search.do?_cus_lq_field_107=&_cus_eq_field_105=&_cus_eq_field_110=&_cus_pq_content=&_cus_eq_field_118=&_cus_eq_field_119=&_cus_eq_field_108=&_cus_eq_field_111=&_cus_eq_field_113=&_cus_eq_field_112=&webid=10028&pg=12&p=1&tpl=&category=&_cus_query=&_cus_pq_content=&q=%E6%88%AA%E8%87%B3&pos=title&od=0&date=&date=')" long>河南卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wsjk.ln.gov.cn/wst_wsjskx/')" long>辽宁卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wsjkw.nx.gov.cn/yqfkdt/yqsd1.htm')" long>宁夏回族自治区卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wsjkw.shandong.gov.cn/ztzl/rdzt/qlzhxxgzbdfyyqfkgz/tzgg/')" long>山东卫生健康委员会</i-button>
+                <i-button @click="openLink('https://wsjkw.sh.gov.cn/xwfb/index.html')" long>上海卫生健康委员会</i-button>
+                <i-button @click="openLink('https://wsjkw.zj.gov.cn/col/col1202112/index.html')" long>浙江卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wjw.shanxi.gov.cn/wjywl02/index.hrh')" long>山西卫生健康委员会</i-button>
+                <i-button @click="openLink('http://ynswsjkw.yn.gov.cn/wjwWebsite/web/col?id=UU157976428326282067&cn=xxgzbd&pcn=ztlm&pid=UU145102906505319731')" long>云南卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wsjkw.gxzf.gov.cn/xxgk_49493/fdzdgk/yqxx_49507/yqxx_49509/')" long>广西壮族自治区卫生健康委员会</i-button>
+                <i-button @click="openLink('http://sxwjw.shaanxi.gov.cn/sy/mtjj/')" long>陕西卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wsjkw.sc.gov.cn/scwsjkw/gzbd01/ztwzlmgl.shtml')" long>四川卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wsjkw.hlj.gov.cn/pages/5df84bfaf6e9fa23e8848a48')" long>黑龙江卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wsjk.tj.gov.cn/ZTZL1/ZTZL750/YQFKZL9424/YQTB7440/')" long>天津卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wjw.fujian.gov.cn/xxgk/gsgg/yqgg/')" long>福建省卫生健康委员会</i-button>
+                <i-button @click="openLink('http://www.hebwsjs.gov.cn/sjdt/index.jhtml')" long>河北卫生健康委员会</i-button>
+                <i-button @click="openLink('http://hc.jiangxi.gov.cn/col/col38018/index.html')" long>江西卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wjw.jiangsu.gov.cn/col/col7290/index.html')" long>江苏卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wsjkw.cq.gov.cn/ztzl_242/qlzhxxgzbdfyyqfkgz/yqtb/')" long>重庆卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wjw.nmg.gov.cn/xwzx/xwfb/index_2.shtml')" long>内蒙古卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wsjkw.jl.gov.cn/zwgk/yqtb/')" long>吉林卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wjw.guizhou.gov.cn/xwzx_500663/zwyw/')" long>贵州卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wjw.ah.gov.cn/ztzl/xxgzbdfyyqfk/index.html')" long>安徽卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wjw.hubei.gov.cn/bmdt/ztzl/fkxxgzbdgrfyyq/xxfb/')" long>湖北卫生健康委员会</i-button>
+                <i-button @click="openLink('http://wjw.hunan.gov.cn/wjw/xxgk/gzdt/zyxw_1/index.html')" long>湖南卫生健康委员会</i-button>
+                <i-button @click="openLink('http://www.hainan.gov.cn/hainan/yqfkzzzzxtb/list_jjdyyqfkzzz.shtml')" long>海南卫生健康委员会</i-button> -->
+            </Drawer>
+        </i-Col>
+        <i-Col span="12">
+            <card style="">
+                <p slot="title">查询&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i-button type="success" size="small" @click="select">查找</i-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i-button type="warning" size="small" @click="showDrawer = true">高亮</i-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i-button type="info" size="small" @click="toExcel()">转表格式</i-button>
+                </p>
+                <i-Form :label-width="100">
+                    <form-item label="类型">
+                        <i-Select v-model="selectObj.itype">
+                            <i-Option v-for="(val,lab) in iTypesMap" v-model="val" :key="val">{{ lab }}</i-Option>
+                        </i-Select>
+                    </form-item>
+                    <form-item label="日期">
+                        <Date-Picker type="date" v-model="selectObj.date" placeholder="Select date" style="width: 200px"></Date-Picker>
+                    </form-item>
+                    <Form-Item label="输入源头">
+                        <!-- <i-Input type="text" v-model="selectObj.from"></i-Input> -->
+                        <i-Select style="width: calc(100% - 60px);"
+                                v-model="selectObj.from"
+                                filterable
+                                :remote-method="selectInptSF"
+                                default-label="selectInput.selectFrom.default"
+                                :loading="selectInput.selectFrom.loading">
+                            <i-Option v-for="(option, index) in selectInput.selectFrom.options" :value="option.value" :key="index">{{option.label}}</i-Option>
+                        </i-Select> <i-button type="text" @click="selectObj.from = ''">清除</i-button>
+                    </Form-Item>
+                    <Form-Item label="输入地">
+                        <!-- <i-Input type="text" v-model="selectObj.to"></i-Input> -->
+                        <i-Select style="width: calc(100% - 60px);"
+                                v-model="selectObj.to"
+                                filterable
+                                :remote-method="selectInptST"
+                                default-label="selectInput.selectTo.default"
+                                :loading="selectInput.selectTo.loading">
+                            <i-Option v-for="(option, index) in selectInput.selectTo.options" :value="option.value" :key="index">{{option.label}}</i-Option>
+                        </i-Select> <i-button type="text" @click="selectObj.to = ''">清除</i-button>
+                    </Form-Item>
+                    <Form-Item label="数量">
+                        <i-Input type="number" v-model="selectObj.num"></i-Input>
+                    </Form-Item>
+                    <Form-Item label="输入人员">
+                        <i-Input type="text" v-model="selectObj.whos"></i-Input>
+                    </Form-Item>
+                    <Form-Item label="说明">
+                        <i-Input type="textarea" v-model="selectObj.note"></i-Input>
+                    </Form-Item>
+                </i-Form>
+            </card>
+            <Drawer :closable="false" width="100%" v-model="showExcelDrawer" :mask="false" class="urlDrawer" placement="left">
+                <i-Button type="success" long @click="showExcelDrawer=false">关闭</i-Button>
+                <i-table border :columns="excelColumns" :data="excelData"></i-table>
+            </Drawer>
+        </i-Col>
+    </Row>
+    <br/>
+    <card>
+        <i-Table :columns="columns" :data="tData" :row-class-name="rowClassName">
+        </i-Table>
+        <Drawer :closable="false" width="640" v-model="showDrawer" :mask="false">
+            <Checkbox-Group v-model="currentColKeywords">
+                <i-Button type="success" long @click="showDrawer=false" style="margin-bottom: 10px;">关闭</i-Button>
+                <Checkbox style="width: 200px;font-size: 18px;" v-for="v in colKeywords" :label="v" border></Checkbox>
+                <div v-if="currentColKeywords.length" style="margin: 5px 0;">
+                    <i-Button type="primary" @click="currentColKeywords.splice(0,currentColKeywords.length)">全部不选</i-Button>
+                </div>
+            </Checkbox-Group>
+        </Drawer>
+    </card>
+</div>
+<script>
+    window.names = [];
+    window.$vue = new Vue({
+        el: '#main',
+        data() {
+            return {
+                iTypesMap: {
+                    "无症状(本土和输入)": 'daily_wzz',
+                    "每日输入(确诊)": 'daily_inj',
+                    "本土病例(确诊)": 'daily_ill',
+                    "总无症状": 'total_wzz',
+                    "总输入病例": 'total_inj',
+                },
+                insertObj: {
+                    itype: '',
+                    date: '',
+                    from: '',
+                    to: '',
+                    num: '',
+                    whos: '',
+                    note: ''
+                },
+                selectObj: {
+                    itype: '',
+                    date: '',
+                    from: '',
+                    to: '',
+                    num: '',
+                    whos: '',
+                    note: ''
+                },
+                columns: [
+                    { title: 'id', key: 'Id' },
+                    { title: '来自', key: 'CityFrom',sortable: true },
+                    { title: '到', key: 'CityTo',sortable: true },
+                    { title: '数量', key: 'Num',sortable: true },
+                    { title: '日期', key: 'Date',sortable: true },
+                    { title: '输入人员', key: 'Whos' },
+                    { title: '说明', key: 'Note' }
+                ],
+                excelColumns: [{"title":"省份","key":"name"}],
+                excelData: [],
+                excelOk: false,
+                currentColKeywords: [],
+                colKeywords: [],
+                tData: [],
+                showDrawer: false,
+                urlDrawer: false,
+                showExcelDrawer: false,
+                selectInput: {
+                    selectFrom: {
+                        loading: false,
+                        default: '北京',
+                        options: []
+                    },
+                    selectTo: {
+                        loading: false,
+                        default: '北京',
+                        options: []
+                    },
+                    insertTo: {
+                        loading: false,
+                        default: '北京',
+                        options: []
+                    },
+                    insertFrom: {
+                        loading: false,
+                        default: '北京',
+                        options: []
+                    },
+                },
+                orgUrl,
+                urlBtnAction: [
+                    {text: '新窗口打开',action:'open'},
+                    {text: '复制链接到粘贴板',action:'copy'},
+                ],
+                curUrlBtnAction: '新窗口打开',
+                btnColor: ['info','success','warning','error']
+            }
+        },
+        methods: {
+            insert() {
+                let sobj = JSON.parse(JSON.stringify(this.insertObj));
+                sobj.date = (() => {
+                    let year = this.insertObj.date.getFullYear();
+                    let month = this.insertObj.date.getMonth() + 1;
+                    let day = this.insertObj.date.getDate();
+                    return `${year}${month < 10 ? '0' + month : month}${day < 10 ? '0' + day : day}`;
+                })();
+                apis.insert(sobj)
+                .then(_ => {
+                    if (_.Code === 200) {
+                        this.$Message.success('插入成功');
+                    } else {
+                        this.$Message.error(`插入失败:${_.Message}`);
+                    }
+                })
+            },
+            select() {
+                let sobj = JSON.parse(JSON.stringify(this.selectObj));
+                sobj.date = (() => {
+                    let year = this.selectObj.date.getFullYear();
+                    let month = this.selectObj.date.getMonth() + 1;
+                    let day = this.selectObj.date.getDate();
+                    return `${year}${month < 10 ? '0' + month : month}${day < 10 ? '0' + day : day}`;
+                })();
+                apis.select(sobj)
+                    .then(_ => {
+                        if (_.Content === "null") {
+                            return [];
+                        } else {
+                            return JSON.parse(_.Content);
+                        }
+                    })
+                    .then(_ => {
+                        this.colKeywords.splice(0,this.colKeywords.length);
+                        this.currentColKeywords.splice(0,this.currentColKeywords.length);
+                        _ = _.map(_ => {
+                            for (let i in _) {
+                                if (i === 'Id' || this.colKeywords.includes(_[i])) {} else {
+                                    this.colKeywords.push(_[i]);
+                                }
+                            }
+                            return _;
+                        });
+                        this.tData.splice(0,this.tData.length,..._);
+                        this.excelOk = false;
+                    });
+            },
+            rowClassName (row, index) {
+                let select = false;
+                for (let i in row) {
+                    if (this.currentColKeywords.includes(row[i])) {
+                        select = true;
+                        break;
+                    }
+                }
+                if (select) {
+                    return 'demo-table-info-row';
+                } else {
+                    return "";
+                }
+            },
+            openLink(ind) {
+                this.orgUrl[ind].time++;
+                let link = this.orgUrl[ind].link;
+                if (this.curUrlBtnAction === "新窗口打开") {
+                    window.open(link,"_blank");
+                } else if (this.curUrlBtnAction === "复制链接到粘贴板") {
+                    mmcopy(link);
+                    this.$Message.success("成功复制到粘贴板");
+                }
+            },
+            selectInptSF(query) {
+                if (query !== '') {
+                    this.selectInput.selectFrom.loading = true;
+                    setTimeout(() => {
+                        this.selectInput.selectFrom.loading = false;
+                        this.selectInput.selectFrom.options = window.names.filter(item => item.label.indexOf(query) > -1);
+                        this.selectObj.from = this.selectInput.selectFrom.options[0].value;
+                    }, 200);
+                } else {
+                    this.selectInput.selectFrom.options = [];
+                }
+            },
+            selectInptST(query) {
+                if (query !== '') {
+                    this.selectInput.selectTo.loading = true;
+                    setTimeout(() => {
+                        this.selectInput.selectTo.loading = false;
+                        this.selectInput.selectTo.options = window.names.filter(item => item.label.indexOf(query) > -1);
+                        this.selectObj.to = this.selectInput.selectTo.options[0].value;
+                    }, 200);
+                } else {
+                    this.selectInput.selectTo.options = [];
+                }
+            },
+            selectInptIT(query) {
+                if (query !== '') {
+                    this.selectInput.insertTo.loading = true;
+                    setTimeout(() => {
+                        this.selectInput.insertTo.loading = false;
+                        this.selectInput.insertTo.options = window.names.filter(item => item.label.indexOf(query) > -1);
+                        this.insertObj.to = this.selectInput.insertTo.options[0].value;
+                    }, 200);
+                } else {
+                    this.selectInput.insertTo.options = [];
+                }
+            },
+            selectInptIF(query) {
+                if (query !== '') {
+                    this.selectInput.insertFrom.loading = true;
+                    setTimeout(() => {
+                        this.selectInput.insertFrom.loading = false;
+                        this.selectInput.insertFrom.options = window.names.filter(item => item.label.indexOf(query) > -1);
+                        this.insertObj.from = this.selectInput.insertFrom.options[0].value;
+                    }, 200);
+                } else {
+                    this.selectInput.insertFrom.options = [];
+                }
+            },
+            toExcel() {
+                if (this.excelOk) {
+                    this.showExcelDrawer = true;
+                    return ;
+                }
+                this.excelOk = true;
+                let datas = {};
+                let columns = {};
+                // 省份的数量
+                let pCount = 0;
+                this.tData.forEach(d => {
+                    if (!(d.CityTo in columns)) {
+                        pCount++;
+                        columns[d.CityTo] = {
+                            title: d.CityTo,
+                            key: d.CityTo,
+                            sortable: true
+                        };
+                    }
+                    if (!(d.CityFrom in datas)) {
+                        datas[d.CityFrom] = { name: d.CityFrom};
+                    }
+                    datas[d.CityFrom][d.CityTo] = +d.Num;
+                });
+                let _colums = [];
+                for (let i in columns) {
+                    _colums.push(columns[i]);
+                }
+                let _datas = [];
+                let columnsTotal = {name:'合计'};
+                let totalAll = 0;
+                for (let i in datas) {
+                    let total = 0;
+                    for (let j in columns) {
+                        if (!(j in datas[i])) {
+                            datas[i][j] = 0;
+                        } else {
+                            if (!(j in columnsTotal)) {
+                                columnsTotal[j] = 0;
+                            }
+                            total += + datas[i][j];
+                            columnsTotal[j] += + datas[i][j];
+                        }
+                    }
+                    datas[i].total = total;
+                    _datas.push(datas[i]);
+                    totalAll += total;
+                }
+                columnsTotal.total = totalAll;
+                _datas.push(columnsTotal);
+                _colums.push({title:'合计',key:'total',sortable:true});
+                this.excelColumns.splice(1,this.excelColumns.length,..._colums);
+                this.excelData.splice(0,this.excelData.length,..._datas);
+                this.showExcelDrawer = true;
+            },
+            clearInsertForm() {
+                this.insertObj.from = "";
+                this.insertObj.to = "";
+                this.insertObj.note = "";
+                this.insertObj.itype = "";
+                this.insertObj.num = 0;
+            }
+        },
+        mounted() {
+            apis.getNames()
+                .then(names => window.names = names);
+        }
+    })
+</script>
+</body>
+</html>
