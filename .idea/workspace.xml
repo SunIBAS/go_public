@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="951ad913-d659-4155-9d28-72eecd98def1" name="Default Changelist" comment="" />
+    <list default="true" id="951ad913-d659-4155-9d28-72eecd98def1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cov19/pic/ref08.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/Times/TimeBetween.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/office/excelizeExtent.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/依赖安装.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cov19/Server/Server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/Server/Server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cov19/_pre/today.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/_pre/today.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cov19/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cov19/test/TestSql.go" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/test/TestSql.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cov19/utils/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/utils/utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cov19/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/views/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
   <component name="GOROOT" path="C:\Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1nhVliNsp6VCpq8Hc0oTq9O0asR" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -15,23 +40,36 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
     <property name="configurable.Module.GOPATH.is.expanded" value="true" />
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cov19/pic" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public\cov19\pic" />
       <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public\utils" />
       <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public\utils\Datas" />
       <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.go build TestSql.go">
+    <configuration name="go build TestSql.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="go_public" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/cov19/test/TestSql.go" />
+      <package value="public.sunibas.cn/go_public" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build public.sunibas.cn/go_public/cov19" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="go_public" />
       <working_directory value="$PROJECT_DIR$" />
@@ -42,6 +80,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build TestSql.go" />
         <item itemvalue="Go Build.go build public.sunibas.cn/go_public/cov19" />
       </list>
     </recent_temporary>
@@ -49,30 +88,46 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="修正" />
+    <option name="LAST_COMMIT_MESSAGE" value="修正" />
+  </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
     <proxy>https://goproxy.cn</proxy>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1473" height="261" key="GridCell.Tab.0.bottom" timestamp="1611843616042">
+    <state x="731" y="255" key="CommitChangelistDialog2" timestamp="1611843821826">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1473" height="261" key="GridCell.Tab.0.bottom/0.40.1920.1040@0.40.1920.1040" timestamp="1611843616042" />
-    <state width="1473" height="261" key="GridCell.Tab.0.center" timestamp="1611843616042">
+    <state x="731" y="255" key="CommitChangelistDialog2/0.40.1920.1040@0.40.1920.1040" timestamp="1611843821826" />
+    <state width="1473" height="267" key="GridCell.Tab.0.bottom" timestamp="1611893542886">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1473" height="261" key="GridCell.Tab.0.center/0.40.1920.1040@0.40.1920.1040" timestamp="1611843616042" />
-    <state width="1473" height="261" key="GridCell.Tab.0.left" timestamp="1611843616042">
+    <state width="1473" height="267" key="GridCell.Tab.0.bottom/0.40.1920.1040@0.40.1920.1040" timestamp="1611893542886" />
+    <state width="1473" height="267" key="GridCell.Tab.0.center" timestamp="1611893542886">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1473" height="261" key="GridCell.Tab.0.left/0.40.1920.1040@0.40.1920.1040" timestamp="1611843616042" />
-    <state width="1473" height="261" key="GridCell.Tab.0.right" timestamp="1611843616042">
+    <state width="1473" height="267" key="GridCell.Tab.0.center/0.40.1920.1040@0.40.1920.1040" timestamp="1611893542886" />
+    <state width="1473" height="267" key="GridCell.Tab.0.left" timestamp="1611893542886">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1473" height="261" key="GridCell.Tab.0.right/0.40.1920.1040@0.40.1920.1040" timestamp="1611843616042" />
+    <state width="1473" height="267" key="GridCell.Tab.0.left/0.40.1920.1040@0.40.1920.1040" timestamp="1611893542886" />
+    <state width="1473" height="267" key="GridCell.Tab.0.right" timestamp="1611893542886">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state width="1473" height="267" key="GridCell.Tab.0.right/0.40.1920.1040@0.40.1920.1040" timestamp="1611893542886" />
     <state x="738" y="89" key="SettingsEditor" timestamp="1611842637819">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="738" y="89" key="SettingsEditor/0.40.1920.1040@0.40.1920.1040" timestamp="1611842637819" />
+    <state x="710" y="283" key="Vcs.Push.Dialog.v2" timestamp="1611843828986">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="710" y="283" key="Vcs.Push.Dialog.v2/0.40.1920.1040@0.40.1920.1040" timestamp="1611843828986" />
+    <state x="823" y="223" width="626" height="490" key="find.popup" timestamp="1611893460617">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="823" y="223" width="626" height="490" key="find.popup/0.40.1920.1040@0.40.1920.1040" timestamp="1611893460617" />
   </component>
 </project>

@@ -103,35 +103,6 @@
                 <i-button v-for="(url,ind) in orgUrl" :type="btnColor[url.time % 4]"
                           :class="ind % 2 ? 'btnOdd' : 'btnEven'"
                           @click="openLink(ind)" long>{{url.title}}</i-button>
-                <!-- <i-button @click="openLink('http://www.nhc.gov.cn/cms-search/xxgk/searchList.htm?type=search')" long>国家卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wjw.beijing.gov.cn/xwzx_20031/wnxw/')" long>北京卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wsjk.gansu.gov.cn/channel/11217/index.html')" long>甘肃卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wsjkw.gd.gov.cn/zwyw_yqxx/')" long>广东卫生健康委员会</i-button>
-                <i-button @click="openLink('https://search1.henan.gov.cn/jrobot/search.do?_cus_lq_field_107=&_cus_eq_field_105=&_cus_eq_field_110=&_cus_pq_content=&_cus_eq_field_118=&_cus_eq_field_119=&_cus_eq_field_108=&_cus_eq_field_111=&_cus_eq_field_113=&_cus_eq_field_112=&webid=10028&pg=12&p=1&tpl=&category=&_cus_query=&_cus_pq_content=&q=%E6%88%AA%E8%87%B3&pos=title&od=0&date=&date=')" long>河南卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wsjk.ln.gov.cn/wst_wsjskx/')" long>辽宁卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wsjkw.nx.gov.cn/yqfkdt/yqsd1.htm')" long>宁夏回族自治区卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wsjkw.shandong.gov.cn/ztzl/rdzt/qlzhxxgzbdfyyqfkgz/tzgg/')" long>山东卫生健康委员会</i-button>
-                <i-button @click="openLink('https://wsjkw.sh.gov.cn/xwfb/index.html')" long>上海卫生健康委员会</i-button>
-                <i-button @click="openLink('https://wsjkw.zj.gov.cn/col/col1202112/index.html')" long>浙江卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wjw.shanxi.gov.cn/wjywl02/index.hrh')" long>山西卫生健康委员会</i-button>
-                <i-button @click="openLink('http://ynswsjkw.yn.gov.cn/wjwWebsite/web/col?id=UU157976428326282067&cn=xxgzbd&pcn=ztlm&pid=UU145102906505319731')" long>云南卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wsjkw.gxzf.gov.cn/xxgk_49493/fdzdgk/yqxx_49507/yqxx_49509/')" long>广西壮族自治区卫生健康委员会</i-button>
-                <i-button @click="openLink('http://sxwjw.shaanxi.gov.cn/sy/mtjj/')" long>陕西卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wsjkw.sc.gov.cn/scwsjkw/gzbd01/ztwzlmgl.shtml')" long>四川卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wsjkw.hlj.gov.cn/pages/5df84bfaf6e9fa23e8848a48')" long>黑龙江卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wsjk.tj.gov.cn/ZTZL1/ZTZL750/YQFKZL9424/YQTB7440/')" long>天津卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wjw.fujian.gov.cn/xxgk/gsgg/yqgg/')" long>福建省卫生健康委员会</i-button>
-                <i-button @click="openLink('http://www.hebwsjs.gov.cn/sjdt/index.jhtml')" long>河北卫生健康委员会</i-button>
-                <i-button @click="openLink('http://hc.jiangxi.gov.cn/col/col38018/index.html')" long>江西卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wjw.jiangsu.gov.cn/col/col7290/index.html')" long>江苏卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wsjkw.cq.gov.cn/ztzl_242/qlzhxxgzbdfyyqfkgz/yqtb/')" long>重庆卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wjw.nmg.gov.cn/xwzx/xwfb/index_2.shtml')" long>内蒙古卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wsjkw.jl.gov.cn/zwgk/yqtb/')" long>吉林卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wjw.guizhou.gov.cn/xwzx_500663/zwyw/')" long>贵州卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wjw.ah.gov.cn/ztzl/xxgzbdfyyqfk/index.html')" long>安徽卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wjw.hubei.gov.cn/bmdt/ztzl/fkxxgzbdgrfyyq/xxfb/')" long>湖北卫生健康委员会</i-button>
-                <i-button @click="openLink('http://wjw.hunan.gov.cn/wjw/xxgk/gzdt/zyxw_1/index.html')" long>湖南卫生健康委员会</i-button>
-                <i-button @click="openLink('http://www.hainan.gov.cn/hainan/yqfkzzzzxtb/list_jjdyyqfkzzz.shtml')" long>海南卫生健康委员会</i-button> -->
             </Drawer>
         </i-Col>
         <i-Col span="12">
@@ -139,7 +110,8 @@
                 <p slot="title">查询&nbsp;&nbsp;&nbsp;&nbsp;
                     <i-button type="success" size="small" @click="select">查找</i-button>&nbsp;&nbsp;&nbsp;&nbsp;
                     <i-button type="warning" size="small" @click="showDrawer = true">高亮</i-button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <i-button type="info" size="small" @click="toExcel()">转表格式</i-button>
+                    <i-button type="info" size="small" @click="toExcel()">转表格式</i-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i-button type="warning" size="small" @click="showWRExcelDrawer = true">导出Excel文件</i-button>&nbsp;&nbsp;&nbsp;&nbsp;
                 </p>
                 <i-Form :label-width="100">
                     <form-item label="类型">
@@ -186,6 +158,28 @@
             <Drawer :closable="false" width="100%" v-model="showExcelDrawer" :mask="false" class="urlDrawer" placement="left">
                 <i-Button type="success" long @click="showExcelDrawer=false">关闭</i-Button>
                 <i-table border :columns="excelColumns" :data="excelData"></i-table>
+            </Drawer>
+            <Drawer :closable="false" width="100%" v-model="showWRExcelDrawer" :mask="false" class="urlDrawer" placement="left">
+                <i-Button type="success" long @click="showWRExcelDrawer=false">关闭</i-Button>
+                <i-Form :label-width="100">
+                    <form-item label="文件路径">
+                        <i-Input type="text" v-model="wrExcel.filePath"></i-Input>
+                    </form-item>
+                    <form-item label="指定日期？">
+                        <div>
+                            <i-Switch v-model="wrExcel.all"></i-Switch>
+                            <div v-if="!wrExcel.all" style="display: inline-block;">不指定，将写出全部数据</div>
+                            <div v-else style="display: inline-block;">指定，将只写出指定日期的五个工作表</div>
+                        </div>
+                    </form-item>
+                    <form-item label="指定日期">
+                        <Date-Picker type="date" v-model="wrExcel.date" :disabled="!wrExcel.all"
+                                     placeholder="Select date" style="width: 200px"></Date-Picker>
+                    </form-item>
+                    <form-item>
+                        <i-button type="warning" @click="writeOutToExcelAction">写出</i-button>
+                    </form-item>
+                </i-Form>
             </Drawer>
         </i-Col>
     </Row>
@@ -281,7 +275,14 @@
                     {text: '复制链接到粘贴板',action:'copy'},
                 ],
                 curUrlBtnAction: '新窗口打开',
-                btnColor: ['info','success','warning','error']
+                btnColor: ['info','success','warning','error'],
+                // 导出 excel 文件的抽屉
+                showWRExcelDrawer: false,
+                wrExcel: {
+                    filePath: '',
+                    date: '',
+                    all: false
+                }
             }
         },
         methods: {
@@ -466,7 +467,8 @@
                 this.insertObj.note = "";
                 this.insertObj.itype = "";
                 this.insertObj.num = 0;
-            }
+            },
+            writeOutToExcelAction() {}
         },
         mounted() {
             apis.getNames()
