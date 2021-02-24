@@ -76,6 +76,7 @@
             let repRules = [
                 [/北京市新增[0-9]+例[本土|本地]*新冠肺炎确诊病例/,colorsFn.red],
                 [/新增[0-9]+例[本土|本地]*确诊病例/,colorsFn.red],
+                [/新增[0-9]+例境外输入*确诊病例/,colorsFn.red],
                 [/[0-9]+例无症状感染者/,colorsFn.blue],
                 [/新增[0-9]+例境外输入无症状感染者/,colorsFn.green],
             ];
@@ -145,10 +146,11 @@
                 [/全区无新增新冠肺炎确诊病例，无新增疑似病例，无无症状感染者报告/,colorsFn.red],
             ];
             psWithRulues(ps,repRules);
-        } else if (location.href.includes('http://wsjkw.shandong.gov.cn/')) { // 宁夏
+        } else if (location.href.includes('http://wsjkw.shandong.gov.cn/')) { // 山东
             let ps = getPs("body > div.liebiaonei > div > div.text > div.view.TRS_UEDITOR.trs_paper_default.trs_web","section");
             let repRules = [
                 [/无新增/,colorsFn.red],
+                [/境外输入无症状感染者[0-9]+例/,colorsFn.red],
             ];
             psWithRulues(ps,repRules);
         } else if (location.href.includes('http://wsjk.ln.gov.cn/')) { // 辽宁
@@ -158,6 +160,8 @@
                 [/无新增无症状感染者/,colorsFn.blue],
                 [/新增本土确诊病例治愈出院[0-9]+例/,colorsFn.hide],
                 [/新增[0-9]+例境外输入新冠肺炎确诊病例/,colorsFn.green],
+                [/辽宁省新增境外输入新冠肺炎确诊病例[0-9]+例/,colorsFn.green],
+                [/境外输入无症状感染者[0-9]+例/,colorsFn.green],
             ];
             psWithRulues(ps,repRules);
         } else if (location.href.includes('http://wsjkw.henan.gov.cn/2021')) { // 河南
@@ -208,8 +212,26 @@
             if (!ps.length) {
                 ps = getPs("#zoom > div > div",'div');
             }
+            if (!ps.length) {
+                run = false;
+                setTimeout(load,2000);
+                return;
+            }
+            if (ps[0].parentElement.childNodes[0].textContent.trim()) {
+                let p = document.createElement('p');
+                p.innerHTML = ps[0].parentElement.childNodes[0].textContent;
+                ps[0].parentElement.childNodes[0].remove();
+                ps[0].parentElement.insertBefore(p,ps[0]);
+                let pps = [p];
+                for (let i = 0;i < ps.length;i++) {
+                    pps.push(ps[i]);
+                }
+                ps = pps;
+            }
             let repRules = [
                 [/全省新增[本土|本地]*确诊病例[0-9]+例/,colorsFn.red],
+                [/全省新发现确诊病例[0-9]+例/,colorsFn.red],
+                [/有[0-9]+例转为确诊病例/,colorsFn.red],
                 [/新增无症状感染者[0-9]+例/,colorsFn.blue],
             ];
             psWithRulues(ps,repRules);

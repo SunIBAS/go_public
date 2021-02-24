@@ -15,16 +15,20 @@ import (
 	"strings"
 )
 
+var dbPath = "C:\\Users\\IBAS\\go\\src\\public.sunibas.cn\\go_public\\cov19\\db\\db.db"
+
 func main() {
 	//testAdding()
 	//batchAddingAndWriteBackToDB(20210116,20210127)
 	//saveToExcel()
-	saveAllToExcel()
+	//saveAllToExcel()
+	batchAddingAndWriteBackToDB(20210203, 20210206)
+	//addingAndWriteBackToDB("20210131","20210201")
 }
 
 func testSelectDI() {
 	sql := sqlsint.SqlsInt{
-		DbPath:   "C:\\Users\\IBAS\\go\\src\\sunibas.cn\\go_utils\\cov19\\db\\db.db",
+		DbPath:   dbPath,
 		Database: nil,
 		ShowSql:  true,
 	}
@@ -37,7 +41,7 @@ func testSelectDI() {
 
 func testSelect() {
 	sql := sqlsint.SqlsInt{
-		DbPath:   "C:\\Users\\IBAS\\go\\src\\sunibas.cn\\go_utils\\cov19\\db\\db.db",
+		DbPath:   dbPath,
 		Database: nil,
 		ShowSql:  true,
 	}
@@ -50,7 +54,7 @@ func testSelect() {
 
 func testAdding() {
 	sql := sqlsint.SqlsInt{
-		DbPath:   "C:\\Users\\IBAS\\go\\src\\sunibas.cn\\go_utils\\cov19\\db\\db.db",
+		DbPath:   dbPath,
 		Database: nil,
 		ShowSql:  true,
 	}
@@ -64,7 +68,7 @@ func testAdding() {
 // addingAndWriteBackToDB(from,end)
 func batchAddingAndWriteBackToDB(fromDate, endDate int) {
 	sql := sqlsint.SqlsInt{
-		DbPath:   "C:\\Users\\IBAS\\go\\src\\sunibas.cn\\go_utils\\cov19\\db\\db.db",
+		DbPath:   dbPath,
 		Database: nil,
 		ShowSql:  true,
 	}
@@ -82,7 +86,7 @@ func batchAddingAndWriteBackToDB(fromDate, endDate int) {
 }
 func addingAndWriteBackToDB(pDate, tDate string) {
 	sql := sqlsint.SqlsInt{
-		DbPath:   "C:\\Users\\IBAS\\go\\src\\sunibas.cn\\go_utils\\cov19\\db\\db.db",
+		DbPath:   dbPath,
 		Database: nil,
 		ShowSql:  true,
 	}
@@ -97,7 +101,7 @@ func addingAndWriteBackToDB(pDate, tDate string) {
 //
 func saveToExcel() {
 	sql := sqlsint.SqlsInt{
-		DbPath:   "C:\\Users\\IBAS\\go\\src\\sunibas.cn\\go_utils\\cov19\\db\\db.db",
+		DbPath:   dbPath,
 		Database: nil,
 		ShowSql:  true,
 	}
@@ -121,7 +125,7 @@ func saveAllToExcel() {
 	saveExcelPath := "C:\\Users\\IBAS\\go\\src\\public.sunibas.cn\\go_public\\cov19\\_pre\\today.xlsx"
 	os.Remove(saveExcelPath)
 	sql := sqlsint.SqlsInt{
-		DbPath:   "C:\\Users\\IBAS\\go\\src\\public.sunibas.cn\\go_public\\cov19\\db\\db.db",
+		DbPath:   dbPath,
 		Database: nil,
 		ShowSql:  true,
 	}

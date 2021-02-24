@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="951ad913-d659-4155-9d28-72eecd98def1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cov19/pic/ref08.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/Times/TimeBetween.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/office/excelizeExtent.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/依赖安装.bat" afterDir="false" />
+    <list default="true" id="951ad913-d659-4155-9d28-72eecd98def1" name="Default Changelist" comment="修正">
+      <change afterPath="$PROJECT_DIR$/downloadBtcData/dl_btc.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/downloadBtcData/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/downloadBtcData/null.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/downloadBtcData/null_tmp.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/downloadBtcData/分析json.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/translateOffice/htmlTemplate.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/translateOffice/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/Datas/ContainItem.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/Datas/RemoveRep.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/DirAndFile/WriteFile.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/MyRegex/Number.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/Network/RequestData.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/ParseOffice/ReplaceAllXmlNode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/ParseOffice/ReplaceDocxWords.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/ParseOffice/ReplaceWordWords.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/SqliteSql/Query.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cov19/Server/Server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/Server/Server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/build.cmd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cov19/_pre/today.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/_pre/today.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cov19/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cov19/_pre/油猴插件.js" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/_pre/油猴插件.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cov19/db/db.db" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/db/db.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cov19/test/TestSql.go" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/test/TestSql.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cov19/utils/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/utils/utils.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cov19/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/cov19/views/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +35,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Go File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -49,15 +59,16 @@
     <property name="configurable.Module.GOPATH.is.expanded" value="true" />
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cov19/pic" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/downloadBtcData" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public\cov19\pic" />
-      <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public\utils" />
-      <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public\utils\Datas" />
-      <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public" />
+      <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public\downloadBtcData" />
+      <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public\utils\SqliteSql" />
+      <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public\utils\Network" />
+      <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public\utils\MyRegex" />
+      <recent name="C:\Users\IBAS\go\src\public.sunibas.cn\go_public\utils\ParseOffice" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build TestSql.go">
@@ -97,34 +108,34 @@
     <proxy>https://goproxy.cn</proxy>
   </component>
   <component name="WindowStateProjectService">
-    <state x="731" y="255" key="CommitChangelistDialog2" timestamp="1611843821826">
+    <state x="731" y="255" key="CommitChangelistDialog2" timestamp="1611898893637">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="731" y="255" key="CommitChangelistDialog2/0.40.1920.1040@0.40.1920.1040" timestamp="1611843821826" />
-    <state width="1473" height="267" key="GridCell.Tab.0.bottom" timestamp="1611893542886">
+    <state x="731" y="255" key="CommitChangelistDialog2/0.40.1920.1040@0.40.1920.1040" timestamp="1611898893637" />
+    <state width="1473" height="227" key="GridCell.Tab.0.bottom" timestamp="1612698343243">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1473" height="267" key="GridCell.Tab.0.bottom/0.40.1920.1040@0.40.1920.1040" timestamp="1611893542886" />
-    <state width="1473" height="267" key="GridCell.Tab.0.center" timestamp="1611893542886">
+    <state width="1473" height="227" key="GridCell.Tab.0.bottom/0.40.1920.1040@0.40.1920.1040" timestamp="1612698343243" />
+    <state width="1473" height="227" key="GridCell.Tab.0.center" timestamp="1612698343242">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1473" height="267" key="GridCell.Tab.0.center/0.40.1920.1040@0.40.1920.1040" timestamp="1611893542886" />
-    <state width="1473" height="267" key="GridCell.Tab.0.left" timestamp="1611893542886">
+    <state width="1473" height="227" key="GridCell.Tab.0.center/0.40.1920.1040@0.40.1920.1040" timestamp="1612698343242" />
+    <state width="1473" height="227" key="GridCell.Tab.0.left" timestamp="1612698343242">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1473" height="267" key="GridCell.Tab.0.left/0.40.1920.1040@0.40.1920.1040" timestamp="1611893542886" />
-    <state width="1473" height="267" key="GridCell.Tab.0.right" timestamp="1611893542886">
+    <state width="1473" height="227" key="GridCell.Tab.0.left/0.40.1920.1040@0.40.1920.1040" timestamp="1612698343242" />
+    <state width="1473" height="227" key="GridCell.Tab.0.right" timestamp="1612698343242">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1473" height="267" key="GridCell.Tab.0.right/0.40.1920.1040@0.40.1920.1040" timestamp="1611893542886" />
+    <state width="1473" height="227" key="GridCell.Tab.0.right/0.40.1920.1040@0.40.1920.1040" timestamp="1612698343242" />
     <state x="738" y="89" key="SettingsEditor" timestamp="1611842637819">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="738" y="89" key="SettingsEditor/0.40.1920.1040@0.40.1920.1040" timestamp="1611842637819" />
-    <state x="710" y="283" key="Vcs.Push.Dialog.v2" timestamp="1611843828986">
+    <state x="710" y="283" key="Vcs.Push.Dialog.v2" timestamp="1611894472149">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="710" y="283" key="Vcs.Push.Dialog.v2/0.40.1920.1040@0.40.1920.1040" timestamp="1611843828986" />
+    <state x="710" y="283" key="Vcs.Push.Dialog.v2/0.40.1920.1040@0.40.1920.1040" timestamp="1611894472149" />
     <state x="823" y="223" width="626" height="490" key="find.popup" timestamp="1611893460617">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
