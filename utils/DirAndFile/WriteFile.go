@@ -45,9 +45,10 @@ func WriteWithWriteString(filename, wireteString string) {
 	f, err1 = os.Create(filename) //创建文件
 	defer f.Close()
 	checkErr(err1)
-	n, err1 := io.WriteString(f, wireteString) //写入文件(字符串)
+	//n, err1 := io.WriteString(f, wireteString) //写入文件(字符串)
+	_, err1 = io.WriteString(f, wireteString) //写入文件(字符串)
 	checkErr(err1)
-	fmt.Printf("写入 %d 个字节n", n)
+	//fmt.Printf("写入 %d 个字节n", n)
 }
 
 func WriteWithBufio(filename string, wireteString string) {
@@ -56,9 +57,10 @@ func WriteWithBufio(filename string, wireteString string) {
 	f, err1 = os.Create(filename) //创建文件
 	checkErr(err1)
 	w := bufio.NewWriter(f) //创建新的 Writer 对象
-	n4, err1 := w.WriteString(wireteString)
+	//n4, err1 := w.WriteString(wireteString)
+	_, err1 = w.WriteString(wireteString)
 	checkErr(err1)
-	fmt.Printf("写入 %d 个字节n", n4)
+	//fmt.Printf("写入 %d 个字节n", n4)
 	w.Flush()
 	f.Close()
 }

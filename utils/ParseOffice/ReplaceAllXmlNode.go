@@ -21,10 +21,10 @@ func replaceAllDocTag(xml string, tarFrom, tarTo string) string {
 		}
 		return xml
 	}
-	xml = replace("<[a-zA-Z0-9]"+tarFrom+"[a-zA-Z0-9]+", xml, tarFrom, tarTo)
-	xml = replace("</[a-zA-Z0-9]"+tarFrom+"[a-zA-Z0-9]+", xml, tarFrom, tarTo)
-	xml = replace("[a-zA-Z0-9]"+tarFrom+"[a-zA-Z0-9]+=\"", xml, tarFrom, tarTo)
-	xml = replace("[a-zA-Z0-9]"+tarFrom+"[a-zA-Z0-9]+=\"", xml, tarFrom, tarTo)
+	xml = replace("<[a-zA-Z0-9]+"+tarFrom+"[a-zA-Z0-9]+", xml, tarFrom, tarTo)
+	xml = replace("</[a-zA-Z0-9]+"+tarFrom+"[a-zA-Z0-9]+", xml, tarFrom, tarTo)
+	xml = replace("[a-zA-Z0-9]+"+tarFrom+"[a-zA-Z0-9]+=\"", xml, tarFrom, tarTo)
+	xml = replace("[a-zA-Z0-9]+"+tarFrom+"[a-zA-Z0-9]+=\"", xml, tarFrom, tarTo)
 	return xml
 }
 

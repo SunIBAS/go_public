@@ -1,0 +1,6 @@
+{
+  "port": 3008,
+  "apiName": "api",
+  "action": "file",
+  "filePath": "D:\\codes\\node\\binance-api-node\\datas\\tmp.txt"
+}
