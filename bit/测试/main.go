@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"github.com/alphaqiu/mnemonic"
 	"github.com/alphaqiu/mnemonic/entropy"
+	hdwallet "github.com/miguelmota/go-ethereum-hdwallet"
+	"github.com/tyler-smith/go-bip39"
+	"log"
 	"public.sunibas.cn/go_public/bit/utils"
 	"strconv"
 	"strings"
@@ -39,7 +42,7 @@ func setTimeout() {
 }
 
 func main() {
-	testCreateRnd()
+	rndMneProcess()
 }
 
 func testCreateRnd() {
@@ -51,6 +54,25 @@ func testCreateRnd() {
 	}
 	fmt.Println(cr.GetRnd())
 	fmt.Println(cr.ToAddress())
+}
+
+// 理清楚随机助记词的产生和编码位地址的过程
+func rndMneProcess() {
+	//
+	seed := bip39.NewSeed("cake apple borrow silk endorse fitness top denial coil riot stay wolf luggage oxygen faint major edit measure invite love trap field dilemma oblige", "")
+	wallet, err := hdwallet.NewFromSeed(seed)
+	if err != nil {
+		log.Fatal(err)
+	}
+	path := hdwallet.MustParseDerivationPath("m/44'/60'/0'/0/0") //最后一位是同一个助记词的地址id，从0开始，相同助记词可以生产无限个地址
+	account, err := wallet.Derive(path, false)
+	if err != nil {
+		log.Fatal(err)
+	}
+	address := account.Address.Hex()
+	//privateKey, _ := wallet.PrivateKeyHex(account)
+	//publicKey, _ := wallet.PublicKeyHex(account)
+	fmt.Println(strings.ToLower(address))
 }
 
 func rndMne() {

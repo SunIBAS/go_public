@@ -29,6 +29,8 @@ func main() {
 	Console.InputLine(&linesDir, "c:\\1", "请输入样本点的文件夹（全路径）")
 	var outputDir string
 	Console.InputLine(&outputDir, linesDir+"_tif", "请输入保存样本点面化文件的文件夹（最好为空）")
+	var burn string
+	Console.InputLine(&burn, "1", "gdal_rasterize 的 burn 参数，种植结果默认为 1")
 	var txt_file = path.Join(outputDir, "train_line.txt")
 
 	fileAndDirs := DirAndFile.GetSubDirOrFile(linesDir)
@@ -47,13 +49,12 @@ func main() {
 					ext := strings.ToLower(sfd.Name[len(sfd.Name)-4:])
 					if ext == ".shp" {
 						shpFile = sfd.FullPath
-						cmdContent = append(cmdContent, "gdal_rasterize.exe -burn 255 -ts 1000 1000 -init 0 -ot Byte \""+shpFile+"\" \""+tifFile+"\"")
+						cmdContent = append(cmdContent, "gdal_rasterize.exe -burn "+burn+" -ts 1000 1000 -init 0 -ot Byte \""+shpFile+"\" \""+tifFile+"\"")
 					} else if ext == ".tif" {
 						srcTifFile = sfd.FullPath
 						tifFile = path.Join(outputDir, sfd.Name[:len(sfd.Name)-4]+"_LINE.tif")
 						txtContent = append(txtContent, srcTifFile+" "+tifFile)
 					}
-					break
 				}
 			}
 		}

@@ -21,8 +21,8 @@ func main() {
 	//testAdding()
 	//batchAddingAndWriteBackToDB(20210116,20210127)
 	//saveToExcel()
-	//saveAllToExcel()
-	batchAddingAndWriteBackToDB(20210203, 20210206)
+	saveAllToExcel()
+	//batchAddingAndWriteBackToDB(20210203, 20210206)
 	//addingAndWriteBackToDB("20210131","20210201")
 }
 

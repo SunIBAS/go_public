@@ -22,5 +22,8 @@ go build -o ./_release/暴力.exe ./bit/随机匹配/main.go
 
 go build -o ./_release/dearConv19.exe ./dearConv19/main.go
 
-
 go build -o ./_release/种植结构第一步.exe ./种植结构/第一步面化样本点/main.go
+
+go build -o ./_release/scurl.exe ./SimpleCurl/main.go
+
+go build -o ./_release/fileServer.exe ./FileServers/main.go
